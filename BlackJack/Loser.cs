@@ -16,12 +16,18 @@ namespace BlackJack
             InitializeComponent();
 
             string message = "";
-            if (pScore > 21)
+            if (pScore > 21) 
+            {
                 message = "You busted!";
-            else if (dScore == 21)
+            }
+            else if (dScore == 21) 
+            {
                 message = "The dealer got BlackJack!";
+            }
             else
+            {
                 message = "The dealer beat you by " + (dScore - pScore).ToString() + "!";
+            }
 
             lblLoserMessage.Text = "Bust! You lost " + b.ToString("c") + "!\n"
                 + "You had a score of: " + pScore + "\n"

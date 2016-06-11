@@ -64,18 +64,22 @@ namespace BlackJack
             try
             {
                 double bet = double.Parse(txtBet.Text);
-                if (bet < 0)
+                if (bet < 0) 
+                {
                     throw new FormatException();
-                if (bet > currentMoney)
+                }
+                if (bet > currentMoney) 
+                {
                     throw new Exception("You dont have enough money! " + 
                             "Would you like to 'borrow' some more money?");
+                }
                 currentBet += bet;
                 txtCurrentBet.Text = currentBet.ToString("c");
             }
             catch (FormatException ex)
             {
-                MessageBox.Show("Please enter a valid amount. " + ex.Message, "Invalid Amount",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter a valid amount. " + ex.Message, 
+                "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtBet.SelectAll();
                 txtBet.Focus();
             }
@@ -127,8 +131,10 @@ namespace BlackJack
                     {
                         createDealerCards(dealerHandIdx, s, n);
                         int value = dealersHand[dealerHandIdx].getValue();
-                        if (value == 1 && (dealerScore += 11) < 21)
+                        if (value == 1 && (dealerScore += 11) < 21) 
+                        {
                             value = 11;
+                        }
                         dealerScore += value;
                         txtDealerScore.Text = dealerScore.ToString();
                     }
@@ -163,8 +169,10 @@ namespace BlackJack
                     char s = dealersHand[dealerHandIdx].getSuit();
                     int n = dealersHand[dealerHandIdx].getNumber();
                     int value = dealersHand[dealerHandIdx].getValue();
-                    if (value == 1 && dealerScore < 11)
+                    if (value == 1 && dealerScore < 11) 
+                    {
                         value = 11;
+                    }
                     dealerScore += value;
                     hiddenDealerScore += value;
                     txtDealerScore.Text = dealerScore.ToString();
@@ -223,20 +231,22 @@ namespace BlackJack
             };
             for (int i = 0; i < playerCards.Length; i++)
             {
-                if(i == index)
+                if(i == index) 
+                {
                     playerCards[i].Image = Image.FromFile("../cards/" + suit + num + ".png");
+                }
             }
         }
 
         private void createDealerCards(int index, char suit, int num)
         {
-            PictureBox[] dealerCards = {
-                dealerBox1, dealerBox2, dealerBox3, dealerBox4
-            };
+            PictureBox[] dealerCards = { dealerBox1, dealerBox2, dealerBox3, dealerBox4 };
             for (int i = 0; i < dealerCards.Length; i++)
             {
-                if (i == index)
+                if (i == index) 
+                {
                     dealerCards[i].Image = Image.FromFile("../cards/" + suit + num + ".png");
+                }
             }
         }
 
@@ -248,8 +258,10 @@ namespace BlackJack
                 char s = dealersHand[dealerHandIdx].getSuit();
                 int n = dealersHand[dealerHandIdx].getNumber();
                 int value = dealersHand[dealerHandIdx].getValue();
-                if (value == 1 && dealerScore < 11)
+                if (value == 1 && dealerScore < 11) 
+                {
                     value = 11;
+                }
                 dealerScore += value;
                 hiddenDealerScore += value;
                 createDealerCards(dealerHandIdx, s, n);
@@ -381,8 +393,10 @@ namespace BlackJack
         private void btnSplit_Click(object sender, EventArgs e)
         {
             bool isValid = false;
-            if (playersHand[0].getNumber() == playersHand[1].getNumber())
+            if (playersHand[0].getNumber() == playersHand[1].getNumber()) 
+            {
                 isValid = true;
+            }
             if (isValid)
             {
                 DialogResult result = MessageBox.Show("Are you sure you want to split your hand?",
@@ -491,8 +505,10 @@ namespace BlackJack
                     char s = splitHand[splitIndex].getSuit();
                     int n = splitHand[splitIndex].getNumber();
                     int value = splitHand[splitIndex].getValue();
-                    if (value == 1 && splitScore < 11)
+                    if (value == 1 && splitScore < 11) 
+                    {
                         value = 11;
+                    }
                     splitScore += value;
                     txtSplitScore.Text = splitScore.ToString();
                     createSplitCards(splitIndex, s, n);
@@ -511,8 +527,10 @@ namespace BlackJack
         {
             btnSplitStandWasClicked = true;
             waitForSplit = false;
-            if (btnStandWasClicked == true)
+            if (btnStandWasClicked == true) 
+            {
                 btnStand_Click(sender, e);
+            }
         }
 
         private void infoBox_Click(object sender, EventArgs e)
@@ -533,14 +551,22 @@ namespace BlackJack
 
         public Card(int suit, int number)
         {
-            if (suit == 1)
+            if (suit == 1) 
+            {
                 cardSuit = 'c';
+            }
             else if (suit == 2)
+            {
                 cardSuit = 'd';
+            }
             else if (suit == 3)
+            {
                 cardSuit = 'h';
+            }
             else
+            {
                 cardSuit = 's';
+            }
 
             cardNumber = number;
         }
