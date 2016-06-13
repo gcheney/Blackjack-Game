@@ -12,6 +12,12 @@ namespace BlackJack
         public char Suit { get; set; }
         public int Rank { get; set; }
 
+        /// <summary>
+        /// Initializes a new Card object with  
+        /// the provided suit and rank
+        /// </summary>
+        /// <param name="suit">The Card suit</param>
+        /// <param name="rank">The Card rank</param>
         public Card(int suit, int rank)
         {
             switch (suit)
@@ -33,6 +39,10 @@ namespace BlackJack
             Rank = rank;
         }
 
+        /// <summary>
+        /// Returns the value of the card as an integer
+        /// </summary>
+        /// <returns>The Card objects value</returns>
         public int getValue()
         {
             if (Rank > 10)
