@@ -1,55 +1,51 @@
+﻿using System;
+
 namespace BlackJack
 {
+    /// <summary>
+    /// The Card class represents a single card used
+    /// during the Blackjack game. 
+    /// The card has a suit and rank property.
+    /// </summary>
     public class Card
     {
-        private char cardSuit;
-        private int cardNumber;
+        public char Suit { get; set; }
+        public int Rank { get; set; }
 
-        public Card(int suit, int number)
+        public Card(int suit, int rank)
         {
-            if (suit == 1) 
+            switch (suit)
             {
-                cardSuit = 'c';
-            }
-            else if (suit == 2)
-            {
-                cardSuit = 'd';
-            }
-            else if (suit == 3)
-            {
-                cardSuit = 'h';
-            }
-            else
-            {
-                cardSuit = 's';
+                case 1:
+                    Suit = 'c';
+                    break;
+                case 2:
+                    Suit = 'd';
+                    break;
+                case 3:
+                    Suit = 'h';
+                    break;
+                default:
+                    Suit = 's';
+                    break;
             }
 
-            cardNumber = number;
-        }
-
-        public char getSuit()
-        {
-            return cardSuit;
-        }
-
-        public int getNumber()
-        {
-            return cardNumber;
+            Rank = rank;
         }
 
         public int getValue()
         {
-            if (cardNumber > 10)
+            if (Rank > 10)
             {
                 return 10;
             }
-            else if (cardNumber < 2)
+            else if (Rank < 2)
             {
                 return 11;
             }
             else
             {
-                return cardNumber;
+                return Rank;
             }
         }
     }
