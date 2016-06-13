@@ -1,6 +1,6 @@
 ﻿namespace BlackJack
 {
-    partial class Loser
+    partial class LoserMessage
     {
         /// <summary>
         /// Required designer variable.

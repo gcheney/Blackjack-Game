@@ -1,6 +1,6 @@
 ﻿namespace BlackJack
 {
-    partial class Push
+    partial class PushMessage
     {
         /// <summary>
         /// Required designer variable.

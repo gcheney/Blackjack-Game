@@ -1,6 +1,6 @@
 ﻿namespace BlackJack
 {
-    partial class Form1
+    partial class BlackJackUI
     {
         /// <summary>
         /// Required designer variable.
@@ -542,7 +542,7 @@
             this.txtPush.Size = new System.Drawing.Size(25, 20);
             this.txtPush.TabIndex = 45;
             // 
-            // Form1
+            // BlackJackUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -593,9 +593,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dealerBox2);
             this.Controls.Add(this.dealerBox1);
-            this.Name = "Form1";
+            this.Name = "BlackJackUI";
             this.Text = "Black Jack - The Game!";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.BlackJackUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dealerBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dealerBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBox1)).EndInit();

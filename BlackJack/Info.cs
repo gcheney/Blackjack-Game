@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.Win32;
@@ -12,16 +6,23 @@ using Microsoft.Win32;
 
 namespace BlackJack
 {
+    /// <summary>
+    /// Opens a new web browser to display information
+    /// related to the game of Blackjack
+    /// </summary>
     public partial class Info : Form
     {
+        /// <summary>
+        /// Initializes a new Info form
+        /// </summary>
         public Info()
         {
             InitializeComponent();
-            string defaultBrowserPath = GetDefaultBrowserPath();
-            string url = "http://www.pagat.com/banking/blackjack.html";
+            var defaultBrowserPath = GetDefaultBrowserPath();
+            var url = "http://www.pagat.com/banking/blackjack.html";
             try
             {
-                // launch default browser with website url
+                // launch users default browser with website url
                 Process.Start(defaultBrowserPath, url);
             }
             catch (Exception exp)
@@ -32,9 +33,9 @@ namespace BlackJack
 
         private static string GetDefaultBrowserPath()
         {
-            string key = @"htmlfile\shell\open\command";
-            RegistryKey registryKey =
-                Registry.ClassesRoot.OpenSubKey(key, false);
+            var key = @"htmlfile\shell\open\command";
+            RegistryKey registryKey 
+                = Registry.ClassesRoot.OpenSubKey(key, false);
             // get default browser path
             return ((string)registryKey.GetValue(null, null)).Split('"')[1];
         }
