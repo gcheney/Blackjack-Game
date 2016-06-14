@@ -25,5 +25,3 @@ The game allows a single player to play against the virtual dealer and make bets
 ### Invalid Selection on Split Hand
 ![Alt text](http://i.imgur.com/uHmIJmI.png "Invalid Selection on Split Hand")
 
-
-If you would like to download the executable and try it out yourself (only on Windows though), you can do so [here](https://www.glendoncheney.com/downloads/blackjack.exe)
