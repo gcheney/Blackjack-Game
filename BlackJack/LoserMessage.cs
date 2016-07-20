@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace BlackJack
@@ -42,8 +44,11 @@ namespace BlackJack
 
         private void Loser_Load(object sender, EventArgs e)
         {
-            var imgFile = "../cards/loser.jpg";
-            loserBox.Image = Image.FromFile(imgFile);
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string imagePath = "BlackJack.Resources.loser.jpg";
+            Stream stream = assembly.GetManifestResourceStream(imagePath);
+            Image loserImage = new Bitmap(stream);
+            loserBox.Image = loserImage;
         }
     }
 }

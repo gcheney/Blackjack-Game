@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
+using System.Reflection;
+using System.Collections.Generic;
 
 namespace BlackJack
 {
@@ -71,8 +74,9 @@ namespace BlackJack
 
         private void BlackJackUI_Load(object sender, EventArgs e)
         {
-            var infoImage = "../cards/info.png";
-            infoBox.Image = Image.FromFile(infoImage);
+            string infoImageFile = "info.png";
+            Image infoImage = GetImageResource(infoImageFile);
+            infoBox.Image = infoImage;
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -280,8 +284,8 @@ namespace BlackJack
             {
                 DialogResult result = MessageBox.Show(
                     "Are you sure you want to split your hand?",
-                     "Proceed with Split?", 
-                     MessageBoxButtons.YesNo, 
+                     "Proceed with Split?",
+                     MessageBoxButtons.YesNo,
                      MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
@@ -309,12 +313,12 @@ namespace BlackJack
                     txtSplitScore.Text = splitScore.ToString();
                     splitIndex++;
                 }
-           }
-           else
-           {
+            }
+            else
+            {
                 MessageBox.Show("You cannot split the cards unless they have the same value!",
                      "Invalid Split", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-           } 
+            }
         }
 
         private void btnSplitBet_Click(object sender, EventArgs e)
@@ -413,12 +417,13 @@ namespace BlackJack
             PictureBox[] playerCards = {
                 userBox1, userBox2, userBox3, userBox4
             };
-            for (int i = 0; i < playerCards.Length; i++)
+            for (var i = 0; i < playerCards.Length; i++)
             {
                 if (i == index)
                 {
-                    var imgFile = "../cards/" + suit + num + ".png";
-                    playerCards[i].Image = Image.FromFile(imgFile);
+                    string cardImageFile = suit.ToString() + num + ".png";
+                    Image cardImage = GetImageResource(cardImageFile);
+                    playerCards[i].Image = cardImage;
                 }
             }
         }
@@ -428,12 +433,13 @@ namespace BlackJack
             PictureBox[] dealerCards = {
                 dealerBox1, dealerBox2, dealerBox3, dealerBox4
             };
-            for (int i = 0; i < dealerCards.Length; i++)
+            for (var i = 0; i < dealerCards.Length; i++)
             {
                 if (i == index)
                 {
-                    var imgFile = "../cards/" + suit + num + ".png";
-                    dealerCards[i].Image = Image.FromFile(imgFile);
+                    string cardImageFile = suit.ToString() + num + ".png";
+                    Image cardImage = GetImageResource(cardImageFile);
+                    dealerCards[i].Image = cardImage;
                 }
             }
         }
@@ -462,12 +468,13 @@ namespace BlackJack
             PictureBox[] splitCards = {
                 splitBox1, splitBox2, splitBox3, splitBox4
             };
-            for (int i = 0; i < splitCards.Length; i++)
+            for (var i = 0; i < splitCards.Length; i++)
             {
                 if (i == index)
                 {
-                    var imgFile = "../cards/" + suit + num + ".png";
-                    splitCards[i].Image = Image.FromFile(imgFile);
+                    var cardImageFile = suit.ToString() + num + ".png";
+                    Image cardImage = GetImageResource(cardImageFile);
+                    splitCards[i].Image = cardImage;
                 }
             }
         }
@@ -546,14 +553,15 @@ namespace BlackJack
 
         private void DealNewHand()
         {
-            var backImage = "../cards/back.png";
             cardDeck = new Deck();
-            userBox1.Image = Image.FromFile(backImage);
-            userBox2.Image = Image.FromFile(backImage);
+            string backImageFile = "back.png";
+            Image backImage = GetImageResource(backImageFile);
+            userBox1.Image = backImage;
+            userBox2.Image = backImage;
             userBox3.Image = null;
             userBox4.Image = null;
-            dealerBox1.Image = Image.FromFile(backImage);
-            dealerBox2.Image = Image.FromFile(backImage);
+            dealerBox1.Image = backImage;
+            dealerBox2.Image = backImage;
             dealerBox3.Image = null;
             dealerBox4.Image = null;
             splitBox1.Image = null;
@@ -592,6 +600,17 @@ namespace BlackJack
             lblBetTheSplit.Visible = false;
             txtBet.Clear();
             txtBet.Focus();
+        }
+
+        private Image GetImageResource(string filename)
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            var resources = new List<string>(assembly.GetManifestResourceNames());
+
+            Stream imageStream = assembly.GetManifestResourceStream(
+                resources.Find(target => target.Contains(filename)));
+
+            return new Bitmap(imageStream);
         }
 
         private void btnExit_Click(object sender, EventArgs e)

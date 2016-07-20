@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
+using System.Reflection;
 
 namespace BlackJack
 {
@@ -43,7 +45,11 @@ namespace BlackJack
 
         private void Winner_Load(object sender, EventArgs e)
         {
-            winnerBox.Image = Image.FromFile("../cards/winner.jpg");
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string imagePath = "BlackJack.Resources.winner.jpg";
+            Stream stream = assembly.GetManifestResourceStream(imagePath);
+            Image winnerImage = new Bitmap(stream);
+            winnerBox.Image = winnerImage;
         }
     }
 }
